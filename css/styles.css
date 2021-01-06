@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #34495e;
+
+    /*FLEX*/
+    display: flex;
+    flex-wrap: wrap;
+}
+.container .display-container{
+
+    /*FLEX*/
+    flex: 100% 1;
+    display: flex;
+}
+.container .display-container input{
+    position: relative;
+    flex: 100% 1;
+    text-align: right;
+    padding: 0 10px;
+    font-size: 40px;
+    margin: 15px;
+}
+.container button{
+    flex: 20% 1;
+    margin: 5px;
+}
+.container button:hover{
+    cursor: pointer;
+}
