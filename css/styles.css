@@ -106,6 +106,13 @@
 }
 .container .btn:focus{
     outline: 0;
+    transform: translate(-10px, 10px);
+}
+.container .btn:focus::before{
+    opacity: 0;
+}
+.container .btn:focus::after{
+    opacity: 0;
 }
 .container .left{
     margin-left: 10px;
