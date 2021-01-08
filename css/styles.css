@@ -81,7 +81,25 @@
     font-size: calc(3vh + 1vw);
     background-color: #353535;
 }
-.container .btn::before{
+.container .btn-active{
+    animation: press 0.15s forwards ease;
+}
+
+@keyframes press{
+    0%{
+        top: 0;
+        left: 0;
+    }
+    50%{
+        top: 10px;
+        left: -10px;
+    }
+    100%{
+        top: 0;
+        left: 0;
+    }
+}
+.container .btn .border-left{
     position: absolute;
     content: '';
     top: 5px;
@@ -90,8 +108,12 @@
     height: 100% ;
     transform: skewY(-45deg);
     background-color: #151515;
+    z-index: -1;
 }
-.container .btn::after{
+.container .btn .btn-brd-l-active{
+    animation: pressBorderLeft 0.15s forwards ease;
+}
+.container .btn .border-bottom{
     position: absolute;
     content: '';
     bottom: -10px;
@@ -100,19 +122,50 @@
     height: 10px;
     transform: skewX(-45deg);
     background-color: #151515;
+    z-index: -1;
+}
+.container .btn .btn-brd-b-active{
+    animation: pressBorderBottom 0.15s forwards ease;
+}
+@keyframes pressBorderLeft{
+    0%{
+        top: 5px;
+        left: -10px;
+        transform: skewY(-45deg);
+    }
+    50%{
+        top: 0px;
+        left: 0px;
+        transform: skewY(0deg);
+    }
+    100%{
+        top: 5px;
+        left: -10px;
+        transform: skewY(-45deg);
+    }
+}
+@keyframes pressBorderBottom{
+    0%{
+        bottom: -10px;
+        left: -5px;
+        transform: skewX(-45deg);
+    }
+    50%{
+        bottom: 0px;
+        left: 0px;
+        transform: skewX(0deg);
+    }
+    100%{
+        bottom: -10px;
+        left: -5px;
+        transform: skewX(-45deg);
+    }
 }
 .container .btn:hover{
     cursor: pointer;
 }
 .container .btn:focus{
     outline: 0;
-    transform: translate(-10px, 10px);
-}
-.container .btn:focus::before{
-    opacity: 0;
-}
-.container .btn:focus::after{
-    opacity: 0;
 }
 .container .left{
     margin-left: 10px;
@@ -123,18 +176,18 @@
 .container .operation{
     background-color: #858585;
 }
-.container .operation::before{
+.container .operation .border-left{
     background-color: #4d4d4d;
 }
-.container .operation::after{
+.container .operation .border-bottom{
     background-color: #4d4d4d;
 }
 .container .clear{
     background-color: #d93534;
 }
-.container .clear::before{
+.container .clear .border-left{
     background-color: #970202;
 }
-.container .clear::after{
+.container .clear .border-bottom{
     background-color: #970202;
 }
