@@ -3,42 +3,69 @@ const display = document.getElementById("display");
 const btns = document.querySelectorAll(".btn");
 
 let sum = false;
-let qt1 = "";
-let qt2 = "";
+let qty = "";
 let acm = 0;
 
 const Cantidad = (num) =>{
-    qt1 = qt1 + num;
+    qty = qty + num;
 
-    return qt1;
+    return qty;
+}
+
+const Limpiar = () =>{
+    qty = "";
+    display.value = "0";
+}
+
+const Reiniciar = () =>{
+    qty = "";
+    acm = 0;
+    display.value = "0";
+}
+
+const Borrar = () =>{
+    const digs = [];
+    for(dig of qty){
+        digs.push(dig);
+    }
+    digs.pop();
+    if(digs[0] === undefined){
+        qty = "";
+        display.value = "0";
+    }
+    else{
+        qty = digs.join("");
+        display.value = qty;
+    }
 }
 
 const Sumar = () =>{
-    if(qt1 === ""){
+    if(qty === ""){
         acm = acm;
     }
     else{
-        acm = acm + parseInt(qt1);
-        qt1 = "";
-        console.log(acm);
+        acm = acm + parseInt(qty);
+        qty = "";
         display.value = acm;
     }
     sum = true;
-    console.log(sum);
+}
+
+const Invertir = () =>{
+    console.log("Invirtiendo");
 }
 
 const igual = () =>{
     if(sum){
-        if(qt1 === ""){
+        if(qty === ""){
             acm = acm;
         }
         else{
-            acm = acm + parseInt(qt1);
-            qt1 = "";
+            acm = acm + parseInt(qty);
+            qty = "";
             display.value = acm;
         }
         sum = false;
-        console.log(sum);
     }
 
 }
@@ -48,8 +75,20 @@ for(let btn of btns){
         if(btn.classList.contains("num")){
             display.value = Cantidad(btn.value);
         }
+        if(btn.classList.contains("limpiar")){
+            Limpiar();
+        }
+        if(btn.classList.contains("reiniciar")){
+            Reiniciar();
+        }
+        if(btn.classList.contains("borrar")){
+            Borrar();
+        }
         if(btn.classList.contains("sumar")){
             Sumar();
+        }
+        if(btn.classList.contains("invertir")){
+            Invertir();
         }
         if(btn.classList.contains("igual")){
             igual();

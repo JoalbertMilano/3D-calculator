@@ -182,12 +182,12 @@
 .container .operation .border-bottom{
     background-color: #4d4d4d;
 }
-.container .clear{
+.container .reiniciar{
     background-color: #d93534;
 }
-.container .clear .border-left{
+.container .reiniciar .border-left{
     background-color: #970202;
 }
-.container .clear .border-bottom{
+.container .reiniciar .border-bottom{
     background-color: #970202;
 }
