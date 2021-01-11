@@ -5,11 +5,11 @@ const btns = document.querySelectorAll(".btn");
 let sum = false;
 let qty = "";
 let acm = 0;
-
-let valor = false;
+let valor = "";
 
 const Cantidad = (num) =>{
     qty = qty + num;
+    valor = qty;
     return qty;
 }
 
@@ -44,11 +44,13 @@ const Sumar = () =>{
     if(qty === ""){
         acm = acm;
         display.value = acm;
+        console.log("IF de Sumar()");
     }
     else{
         acm += parseInt(qty);
-        qty = "";
         display.value = acm;
+        qty = "";
+        console.log("ELSE de Sumar()");
     }
     sum = true;
 }
@@ -66,18 +68,10 @@ const Invertir = () =>{
 
 const igual = () =>{
     if(sum){
-        if(qty === ""){
-            acm = acm;
-            display.value = acm;
-        }
-        else{
-            acm += parseInt(qty);
-            qty = "";
-            display.value = acm;
-        }
-        sum = false;
+        acm += parseInt(valor);
+        display.value = acm;
+        qty = "";
     }
-
 }
 
 for(let btn of btns){
