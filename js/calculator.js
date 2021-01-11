@@ -6,9 +6,10 @@ let sum = false;
 let qty = "";
 let acm = 0;
 
+let valor = false;
+
 const Cantidad = (num) =>{
     qty = qty + num;
-
     return qty;
 }
 
@@ -42,9 +43,10 @@ const Borrar = () =>{
 const Sumar = () =>{
     if(qty === ""){
         acm = acm;
+        display.value = acm;
     }
     else{
-        acm = acm + parseInt(qty);
+        acm += parseInt(qty);
         qty = "";
         display.value = acm;
     }
@@ -52,16 +54,24 @@ const Sumar = () =>{
 }
 
 const Invertir = () =>{
-    console.log("Invirtiendo");
+    if(qty === ""){
+        acm = -acm;
+        display.value = acm;
+    }
+    else{
+        qty = -qty;
+        display.value = qty;
+    }
 }
 
 const igual = () =>{
     if(sum){
         if(qty === ""){
             acm = acm;
+            display.value = acm;
         }
         else{
-            acm = acm + parseInt(qty);
+            acm += parseInt(qty);
             qty = "";
             display.value = acm;
         }
