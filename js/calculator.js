@@ -3,6 +3,8 @@ const display = document.getElementById("display");
 const btns = document.querySelectorAll(".btn");
 
 let sum = false;
+let res = false;
+let stt = false;
 let qty = "";
 let acm = 0;
 let valor = "";
@@ -21,6 +23,7 @@ const Limpiar = () =>{
 const Reiniciar = () =>{
     qty = "";
     acm = 0;
+    stt = false;
     display.value = "0";
 }
 
@@ -40,17 +43,39 @@ const Borrar = () =>{
     }
 }
 
+const Resta = () =>{
+    if(qty === ""){
+        acm = acm;
+        display.value = acm;
+        console.log("IF de Resta()");
+    }
+    else if (acm === 0 && stt === false){
+        acm = parseInt(qty) - acm;
+        display.value = acm;
+        qty = "";
+        stt = true;
+        console.log("ELSE IF de Resta()");
+    }
+    else{
+        acm -= parseInt(qty);
+        console.log("qty = " + qty);
+        console.log("acm = " + acm);
+        display.value = acm;
+        qty = "";
+        console.log("ELSE de Resta()");
+    }
+    res = true;
+}
+
 const Sumar = () =>{
     if(qty === ""){
         acm = acm;
         display.value = acm;
-        console.log("IF de Sumar()");
     }
     else{
         acm += parseInt(qty);
         display.value = acm;
         qty = "";
-        console.log("ELSE de Sumar()");
     }
     sum = true;
 }
@@ -72,6 +97,11 @@ const igual = () =>{
         display.value = acm;
         qty = "";
     }
+    if(res){
+            acm -= parseInt(valor);
+            display.value = acm;
+            qty = "";
+    }
 }
 
 for(let btn of btns){
@@ -87,6 +117,9 @@ for(let btn of btns){
         }
         if(btn.classList.contains("borrar")){
             Borrar();
+        }
+        if(btn.classList.contains("resta")){
+            Resta();
         }
         if(btn.classList.contains("sumar")){
             Sumar();
