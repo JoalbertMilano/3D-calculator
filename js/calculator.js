@@ -44,30 +44,30 @@ const Borrar = () =>{
 }
 
 const Resta = () =>{
+    sum = false;
     if(qty === ""){
         acm = acm;
         display.value = acm;
-        console.log("IF de Resta()");
     }
     else if (acm === 0 && stt === false){
         acm = parseInt(qty) - acm;
         display.value = acm;
         qty = "";
         stt = true;
-        console.log("ELSE IF de Resta()");
     }
     else{
         acm -= parseInt(qty);
+        console.log("Else resta");
         console.log("qty = " + qty);
         console.log("acm = " + acm);
         display.value = acm;
         qty = "";
-        console.log("ELSE de Resta()");
     }
     res = true;
 }
 
 const Sumar = () =>{
+    res = false;
     if(qty === ""){
         acm = acm;
         display.value = acm;
@@ -98,9 +98,9 @@ const igual = () =>{
         qty = "";
     }
     if(res){
-            acm -= parseInt(valor);
-            display.value = acm;
-            qty = "";
+        acm -= parseInt(valor);
+        display.value = acm;
+        qty = "";
     }
 }
 
@@ -119,9 +119,19 @@ for(let btn of btns){
             Borrar();
         }
         if(btn.classList.contains("resta")){
+            if(sum){
+                acm += parseInt(valor);
+                display.value = acm;
+                qty = "";
+            }
             Resta();
         }
         if(btn.classList.contains("sumar")){
+            if(res){
+                acm -= parseInt(valor);
+                display.value = acm;
+                qty = "";
+            }
             Sumar();
         }
         if(btn.classList.contains("invertir")){
