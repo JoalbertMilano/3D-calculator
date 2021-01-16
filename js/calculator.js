@@ -2,9 +2,11 @@ const display = document.getElementById("display");
 
 const btns = document.querySelectorAll(".btn");
 
-let sum = false;
+let mul = false;
 let res = false;
-let stt = false;
+let sum = false;
+let str = false;
+let stm = false;
 let qty = "";
 let acm = 0;
 let valor = "";
@@ -23,7 +25,7 @@ const Limpiar = () =>{
 const Reiniciar = () =>{
     qty = "";
     acm = 0;
-    stt = false;
+    str = false;
     display.value = "0";
 }
 
@@ -43,23 +45,45 @@ const Borrar = () =>{
     }
 }
 
-const Resta = () =>{
+const Multiplicar = () =>{
     sum = false;
+    res = false;
     if(qty === ""){
         acm = acm;
         display.value = acm;
     }
-    else if (acm === 0 && stt === false){
+    else if(acm === 0 && stm === false){
+        acm = parseInt(qty);
+        display.value = acm;
+        qty = "";
+        stm = true;
+        console.log("Else if multi");
+    }
+    else{
+        console.log("Else multiplicacion");
+        acm *= parseInt(qty);
+        display.value = acm;
+        qty = "";
+    }
+    mul = true;
+}
+
+const Restar = () =>{
+    sum = false;
+    mul = false;
+    if(qty === ""){
+        acm = acm;
+        display.value = acm;
+    }
+    else if (acm === 0 && str === false){
         acm = parseInt(qty) - acm;
         display.value = acm;
         qty = "";
-        stt = true;
+        str = true;
+        console.log("ELSE if resta");
     }
     else{
         acm -= parseInt(qty);
-        console.log("Else resta");
-        console.log("qty = " + qty);
-        console.log("acm = " + acm);
         display.value = acm;
         qty = "";
     }
@@ -68,6 +92,7 @@ const Resta = () =>{
 
 const Sumar = () =>{
     res = false;
+    mul = false;
     if(qty === ""){
         acm = acm;
         display.value = acm;
@@ -102,6 +127,12 @@ const igual = () =>{
         display.value = acm;
         qty = "";
     }
+    if(mul){
+        acm *= parseInt(valor);
+        display.value = acm;
+        qty = "";
+        console.log("igual multiplicar");
+    }
 }
 
 for(let btn of btns){
@@ -118,19 +149,72 @@ for(let btn of btns){
         if(btn.classList.contains("borrar")){
             Borrar();
         }
-        if(btn.classList.contains("resta")){
+        if(btn.classList.contains("multiplicacion")){
             if(sum){
-                acm += parseInt(valor);
-                display.value = acm;
-                qty = "";
+                if(qty === ""){
+                    acm = acm;
+                }
+                else{
+                    acm += parseInt(valor);
+                    display.value = acm;
+                    qty = "";
+                }
             }
-            Resta();
-        }
-        if(btn.classList.contains("sumar")){
             if(res){
-                acm -= parseInt(valor);
-                display.value = acm;
-                qty = "";
+                if(qty === ""){
+                    acm = acm;
+                }
+                else{
+                    acm -= parseInt(valor);
+                    display.value = acm;
+                    qty = "";
+                }
+            }
+            Multiplicar();
+        }
+        if(btn.classList.contains("resta")){
+            if(mul){
+                if(qty === ""){
+                    acm = acm;
+                }
+                else{
+                    acm *= parseInt(valor);
+                    display.value = acm;
+                    qty = "";
+                }
+            }
+            if(sum){
+                if(qty === ""){
+                    acm = acm;
+                }
+                else{
+                    acm += parseInt(valor);
+                    display.value = acm;
+                    qty = "";
+                }
+            }
+            Restar();
+        }
+        if(btn.classList.contains("suma")){
+            if(mul){
+                if(qty === ""){
+                    acm = acm;
+                }
+                else{
+                    acm *= parseInt(valor);
+                    display.value = acm;
+                    qty = "";
+                }
+            }
+            if(res){
+                if(qty === ""){
+                    acm = acm;
+                }
+                else{
+                    acm -= parseInt(valor);
+                    display.value = acm;
+                    qty = "";
+                }
             }
             Sumar();
         }
