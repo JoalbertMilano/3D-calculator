@@ -56,12 +56,17 @@ const Raiz = () =>{
         display.value = acm;
         console.log("IF");
     }
+    else if(qty === "" && sts === true){
+        acm = Math.sqrt(acm);
+        display.value = acm;
+        console.log("ELSE IF")
+    }
     else{
         qty = Math.sqrt(qty);
         display.value = qty;
         vle = qty;
         sts = true;
-        console.log("ELSE IF");
+        console.log("ELSE");
     }
 }
 
@@ -179,6 +184,7 @@ const igual = () =>{
         display.value = acm;
         qty = "";
     }
+    sts = true;
 }
 
 for(let btn of btns){
