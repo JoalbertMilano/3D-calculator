@@ -7,6 +7,7 @@ let mul = false;
 let res = false;
 let sum = false;
 
+let sts = false;
 let std = false;
 let stm = false;
 let str = false;
@@ -46,6 +47,21 @@ const Borrar = () =>{
     else{
         qty = digs.join("");
         display.value = qty;
+    }
+}
+
+const Raiz = () =>{
+    if(qty === "" && sts === false){
+        acm = acm;
+        display.value = acm;
+        console.log("IF");
+    }
+    else{
+        qty = Math.sqrt(qty);
+        display.value = qty;
+        vle = qty;
+        sts = true;
+        console.log("ELSE IF");
     }
 }
 
@@ -178,6 +194,9 @@ for(let btn of btns){
         }
         if(btn.classList.contains("borrar")){
             Borrar();
+        }
+        if(btn.classList.contains("raiz")){
+            Raiz();
         }
         if(btn.classList.contains("division")){
             if(mul){
