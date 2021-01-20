@@ -7,6 +7,7 @@ let mul = false;
 let res = false;
 let sum = false;
 
+let sta = false;
 let ste = false;
 let sts = false;
 let std = false;
@@ -34,6 +35,7 @@ const Reiniciar = () =>{
     sum = false;
     res = false;
 
+    sta = false;
     ste = false;
     sts = false;
     std = false;
@@ -59,6 +61,21 @@ const Borrar = () =>{
     else{
         qty = digs.join("");
         display.value = qty;
+    }
+}
+
+const Mediar = () =>{
+    if((qty === "" || qty === 0) && sta === false){
+        display.value = "Infinity";
+    }
+    else if(qty === "" && sta === true){
+        acm = 1/acm;
+        display.value = acm;
+    }
+    else{
+        qty = 1/qty;
+        display.value = qty;
+        vle = qty;
     }
 }
 
@@ -209,8 +226,9 @@ const igual = () =>{
         display.value = acm;
         qty = "";
     }
-    sts = true;
+    sta = true;
     ste = true;
+    sts = true;
 }
 
 for(let btn of btns){
@@ -226,6 +244,9 @@ for(let btn of btns){
         }
         if(btn.classList.contains("borrar")){
             Borrar();
+        }
+        if(btn.classList.contains("media")){
+            Mediar();
         }
         if(btn.classList.contains("potenciacion")){
             Elevar();
