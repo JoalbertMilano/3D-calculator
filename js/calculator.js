@@ -7,6 +7,7 @@ let mul = false;
 let res = false;
 let sum = false;
 
+let ste = false;
 let sts = false;
 let std = false;
 let stm = false;
@@ -28,9 +29,20 @@ const Limpiar = () =>{
 }
 
 const Reiniciar = () =>{
-    qty = "";
-    acm = 0;
+    div = false;
+    mul = false;
+    sum = false;
+    res = false;
+
+    ste = false;
+    sts = false;
+    std = false;
+    stm = false;
     str = false;
+
+    qty = "";
+    vle = "";
+    acm = 0;
     display.value = "0";
 }
 
@@ -50,23 +62,36 @@ const Borrar = () =>{
     }
 }
 
+const Elevar = () =>{
+    if(qty === "" && ste === false){
+        acm = acm;
+        display.value = acm;
+    }
+    else if(qty === "" && ste === true){
+        acm **= 2;
+        display.value = acm;
+    }
+    else{
+        qty **= 2;
+        display.value = qty;
+        vle = qty;
+    }
+}
+
 const Raiz = () =>{
     if(qty === "" && sts === false){
         acm = acm;
         display.value = acm;
-        console.log("IF");
     }
     else if(qty === "" && sts === true){
         acm = Math.sqrt(acm);
         display.value = acm;
-        console.log("ELSE IF")
     }
     else{
         qty = Math.sqrt(qty);
         display.value = qty;
         vle = qty;
         sts = true;
-        console.log("ELSE");
     }
 }
 
@@ -185,6 +210,7 @@ const igual = () =>{
         qty = "";
     }
     sts = true;
+    ste = true;
 }
 
 for(let btn of btns){
@@ -200,6 +226,9 @@ for(let btn of btns){
         }
         if(btn.classList.contains("borrar")){
             Borrar();
+        }
+        if(btn.classList.contains("potenciacion")){
+            Elevar();
         }
         if(btn.classList.contains("raiz")){
             Raiz();
