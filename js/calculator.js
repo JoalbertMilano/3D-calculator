@@ -18,6 +18,14 @@ let qty = "";
 let vle = "";
 let acm = 0;
 
+const formatConfig = {
+    maximumFractionDigits: 20
+  };
+
+const Pantalla = (cod) =>{
+    display.value = new Intl.NumberFormat("es-ES", formatConfig).format(cod);
+}
+
 const Cantidad = (num) =>{
     qty = qty + num;
     vle = qty;
@@ -26,7 +34,7 @@ const Cantidad = (num) =>{
 
 const Limpiar = () =>{
     qty = "";
-    display.value = "0";
+    Pantalla(0);
 }
 
 const Reiniciar = () =>{
@@ -45,7 +53,7 @@ const Reiniciar = () =>{
     qty = "";
     vle = "";
     acm = 0;
-    display.value = "0";
+    Pantalla(0);
 }
 
 const Borrar = () =>{
@@ -56,41 +64,44 @@ const Borrar = () =>{
     digs.pop();
     if(digs[0] === undefined){
         qty = "";
-        display.value = "0";
+        Pantalla(0);
     }
     else{
         qty = digs.join("");
-        display.value = qty;
+        Pantalla(qty);
     }
 }
 
 const Mediar = () =>{
     if((qty === "" || qty === 0) && sta === false){
         display.value = "Infinity";
+        console.log("IF");
     }
     else if(qty === "" && sta === true){
         acm = 1/acm;
-        display.value = acm;
+        Pantalla(acm);
+        console.log("ELSE IF");
     }
     else{
         qty = 1/qty;
-        display.value = qty;
+        Pantalla(qty);
         vle = qty;
+        console.log("ELSE");
     }
 }
 
 const Elevar = () =>{
     if(qty === "" && ste === false){
         acm = acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else if(qty === "" && ste === true){
         acm **= 2;
-        display.value = acm;
+        Pantalla(acm);
     }
     else{
         qty **= 2;
-        display.value = qty;
+        Pantalla(qty);
         vle = qty;
     }
 }
@@ -98,7 +109,7 @@ const Elevar = () =>{
 const Raiz = () =>{
     if(qty === "" && sts === false){
         acm = acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else if(qty < 0 || acm < 0){
         display.value = "Invalid input";
@@ -108,11 +119,11 @@ const Raiz = () =>{
     }
     else if(qty === "" && sts === true){
         acm = Math.sqrt(acm);
-        display.value = acm;
+        Pantalla(acm);
     }
     else{
         qty = Math.sqrt(qty);
-        display.value = qty;
+        Pantalla(qty);
         vle = qty;
         sts = true;
     }
@@ -124,17 +135,17 @@ const Dividir = () =>{
     sum = false;
     if(qty === ""){
         acm = acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else if(acm === 0 && std === false){
         acm = parseFloat(qty);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
         std = true;
     }
     else{
         acm /= parseFloat(qty);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     div = true;
@@ -146,17 +157,17 @@ const Multiplicar = () =>{
     sum = false;
     if(qty === ""){
         acm = acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else if(acm === 0 && stm === false){
         acm = parseFloat(qty);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
         stm = true;
     }
     else{
         acm *= parseFloat(qty);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     mul = true;
@@ -168,17 +179,17 @@ const Restar = () =>{
     sum = false;
     if(qty === ""){
         acm = acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else if (acm === 0 && str === false){
         acm = parseFloat(qty) - acm;
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
         str = true;
     }
     else{
         acm -= parseFloat(qty);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     res = true;
@@ -190,11 +201,11 @@ const Sumar = () =>{
     res = false;
     if(qty === ""){
         acm = acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else{
         acm += parseFloat(qty);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     sum = true;
@@ -203,52 +214,49 @@ const Sumar = () =>{
 const Invertir = () =>{
     if(qty === ""){
         acm = -acm;
-        display.value = acm;
+        Pantalla(acm);
     }
     else{
         qty = -qty;
-        display.value = qty;
+        Pantalla(qty);
     }
 }
 
 const Punto = () =>{
     if(qty.includes(".")){
         qty = qty;
-        display.value = qty;
-        console.log("IF");
+        Pantalla(qty);
     }
     else if(qty === ""){
         acm = 0;
         qty = 0 + ".";
-        display.value = qty;
-        console.log("ELSE IF");
+        Pantalla(qty);
     }
     else{
         qty = qty + ".";
-        display.value = qty;
-        console.log("ELSE");
+        Pantalla(qty);
     }
 }
 
 const igual = () =>{
     if(sum){
         acm += parseFloat(vle);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     if(res){
         acm -= parseFloat(vle);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     if(mul){
         acm *= parseFloat(vle);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     if(div){
         acm /= parseFloat(vle);
-        display.value = acm;
+        Pantalla(acm);
         qty = "";
     }
     sta = true;
@@ -259,7 +267,7 @@ const igual = () =>{
 for(let btn of btns){
     btn.addEventListener("click", ()=>{
         if(btn.classList.contains("num")){
-            display.value = Cantidad(btn.value);
+            Pantalla(Cantidad(btn.value));
         }
         if(btn.classList.contains("limpiar")){
             Limpiar();
@@ -286,7 +294,7 @@ for(let btn of btns){
                 }
                 else{
                     acm *= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -296,7 +304,7 @@ for(let btn of btns){
                 }
                 else{
                     acm -= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -306,7 +314,7 @@ for(let btn of btns){
                 }
                 else{
                     acm += parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -319,7 +327,7 @@ for(let btn of btns){
                 }
                 else{
                     acm /= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -329,7 +337,7 @@ for(let btn of btns){
                 }
                 else{
                     acm -= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -339,7 +347,7 @@ for(let btn of btns){
                 }
                 else{
                     acm += parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -352,7 +360,7 @@ for(let btn of btns){
                 }
                 else{
                     acm /= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -362,7 +370,7 @@ for(let btn of btns){
                 }
                 else{
                     acm *= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -372,7 +380,7 @@ for(let btn of btns){
                 }
                 else{
                     acm += parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -385,7 +393,7 @@ for(let btn of btns){
                 }
                 else{
                     acm /= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -395,7 +403,7 @@ for(let btn of btns){
                 }
                 else{
                     acm *= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
@@ -405,7 +413,7 @@ for(let btn of btns){
                 }
                 else{
                     acm -= parseFloat(vle);
-                    display.value = acm;
+                    Pantalla(acm);
                     qty = "";
                 }
             }
