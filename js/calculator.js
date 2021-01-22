@@ -100,6 +100,12 @@ const Raiz = () =>{
         acm = acm;
         display.value = acm;
     }
+    else if(qty < 0 || acm < 0){
+        display.value = "Invalid input";
+        qty = "";
+        vle = 0;
+        acm = 0;
+    }
     else if(qty === "" && sts === true){
         acm = Math.sqrt(acm);
         display.value = acm;
@@ -121,13 +127,13 @@ const Dividir = () =>{
         display.value = acm;
     }
     else if(acm === 0 && std === false){
-        acm = parseInt(qty);
+        acm = parseFloat(qty);
         display.value = acm;
         qty = "";
         std = true;
     }
     else{
-        acm /= parseInt(qty);
+        acm /= parseFloat(qty);
         display.value = acm;
         qty = "";
     }
@@ -143,13 +149,13 @@ const Multiplicar = () =>{
         display.value = acm;
     }
     else if(acm === 0 && stm === false){
-        acm = parseInt(qty);
+        acm = parseFloat(qty);
         display.value = acm;
         qty = "";
         stm = true;
     }
     else{
-        acm *= parseInt(qty);
+        acm *= parseFloat(qty);
         display.value = acm;
         qty = "";
     }
@@ -165,13 +171,13 @@ const Restar = () =>{
         display.value = acm;
     }
     else if (acm === 0 && str === false){
-        acm = parseInt(qty) - acm;
+        acm = parseFloat(qty) - acm;
         display.value = acm;
         qty = "";
         str = true;
     }
     else{
-        acm -= parseInt(qty);
+        acm -= parseFloat(qty);
         display.value = acm;
         qty = "";
     }
@@ -187,7 +193,7 @@ const Sumar = () =>{
         display.value = acm;
     }
     else{
-        acm += parseInt(qty);
+        acm += parseFloat(qty);
         display.value = acm;
         qty = "";
     }
@@ -205,24 +211,43 @@ const Invertir = () =>{
     }
 }
 
+const Punto = () =>{
+    if(qty.includes(".")){
+        qty = qty;
+        display.value = qty;
+        console.log("IF");
+    }
+    else if(qty === ""){
+        acm = 0;
+        qty = 0 + ".";
+        display.value = qty;
+        console.log("ELSE IF");
+    }
+    else{
+        qty = qty + ".";
+        display.value = qty;
+        console.log("ELSE");
+    }
+}
+
 const igual = () =>{
     if(sum){
-        acm += parseInt(vle);
+        acm += parseFloat(vle);
         display.value = acm;
         qty = "";
     }
     if(res){
-        acm -= parseInt(vle);
+        acm -= parseFloat(vle);
         display.value = acm;
         qty = "";
     }
     if(mul){
-        acm *= parseInt(vle);
+        acm *= parseFloat(vle);
         display.value = acm;
         qty = "";
     }
     if(div){
-        acm /= parseInt(vle);
+        acm /= parseFloat(vle);
         display.value = acm;
         qty = "";
     }
@@ -260,7 +285,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm *= parseInt(vle);
+                    acm *= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -270,7 +295,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm -= parseInt(vle);
+                    acm -= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -280,7 +305,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm += parseInt(vle);
+                    acm += parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -293,7 +318,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm /= parseInt(vle);
+                    acm /= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -303,7 +328,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm -= parseInt(vle);
+                    acm -= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -313,7 +338,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm += parseInt(vle);
+                    acm += parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -326,7 +351,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm /= parseInt(vle);
+                    acm /= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -336,7 +361,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm *= parseInt(vle);
+                    acm *= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -346,7 +371,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm += parseInt(vle);
+                    acm += parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -359,7 +384,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm /= parseInt(vle);
+                    acm /= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -369,7 +394,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm *= parseInt(vle);
+                    acm *= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -379,7 +404,7 @@ for(let btn of btns){
                     acm = acm;
                 }
                 else{
-                    acm -= parseInt(vle);
+                    acm -= parseFloat(vle);
                     display.value = acm;
                     qty = "";
                 }
@@ -388,6 +413,9 @@ for(let btn of btns){
         }
         if(btn.classList.contains("invertir")){
             Invertir();
+        }
+        if(btn.classList.contains("punto")){
+            Punto(); 
         }
         if(btn.classList.contains("igual")){
             igual();
