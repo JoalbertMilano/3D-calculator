@@ -13,6 +13,7 @@ let sts = false;
 let std = false;
 let stm = false;
 let str = false;
+let sti = false;
 
 let qty = "";
 let vle = "";
@@ -75,18 +76,15 @@ const Borrar = () =>{
 const Mediar = () =>{
     if((qty === "" || qty === 0) && sta === false){
         display.value = "Infinity";
-        console.log("IF");
     }
     else if(qty === "" && sta === true){
         acm = 1/acm;
         Pantalla(acm);
-        console.log("ELSE IF");
     }
     else{
         qty = 1/qty;
         Pantalla(qty);
         vle = qty;
-        console.log("ELSE");
     }
 }
 
@@ -130,6 +128,7 @@ const Raiz = () =>{
 }
 
 const Dividir = () =>{
+    sti = false;
     mul = false;
     res = false;
     sum = false;
@@ -152,6 +151,7 @@ const Dividir = () =>{
 }
 
 const Multiplicar = () =>{
+    sti = false;
     div = false;
     res = false;
     sum = false;
@@ -174,6 +174,7 @@ const Multiplicar = () =>{
 }
 
 const Restar = () =>{
+    sti = false;
     div = false;
     mul = false;
     sum = false;
@@ -196,6 +197,7 @@ const Restar = () =>{
 }
 
 const Sumar = () =>{
+    sti = false;
     div = false;
     mul = false;
     res = false;
@@ -243,30 +245,38 @@ const igual = () =>{
         acm += parseFloat(vle);
         Pantalla(acm);
         qty = "";
+        sum = false;
     }
     if(res){
         acm -= parseFloat(vle);
         Pantalla(acm);
         qty = "";
+        res = false;
     }
     if(mul){
         acm *= parseFloat(vle);
         Pantalla(acm);
         qty = "";
+        mul = false;
     }
     if(div){
         acm /= parseFloat(vle);
         Pantalla(acm);
         qty = "";
+        div = false;
     }
     sta = true;
     ste = true;
     sts = true;
+    sti = true;
 }
 
 for(let btn of btns){
     btn.addEventListener("click", ()=>{
         if(btn.classList.contains("num")){
+            if(sti){
+                acm = 0;
+            }
             Pantalla(Cantidad(btn.value));
         }
         if(btn.classList.contains("limpiar")){
