@@ -270,6 +270,7 @@ const Invertir = () =>{
     }
     else{
         qty = -qty;
+        vle = qty;
         Pantalla(qty);
     }
 }
