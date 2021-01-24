@@ -7,6 +7,7 @@ let mul = false;
 let res = false;
 let sum = false;
 
+let stp = false;
 let sta = false;
 let ste = false;
 let sts = false;
@@ -18,6 +19,7 @@ let sti = false;
 let qty = "";
 let vle = "";
 let acm = 0;
+let ptv = 0;
 
 const formatConfig = {
     maximumFractionDigits: 20
@@ -33,6 +35,44 @@ const Cantidad = (num) =>{
     return qty;
 }
 
+const Porcentaje = () =>{
+    if(acm === 0 && stp === false && qty === ""){
+        acm = acm;
+        qty = "";
+        Pantalla(acm);
+        console.log("IF");
+    }
+    else if(qty !== ""){
+        if(div || mul){
+            qty = qty / 100;
+            vle = qty;
+            Pantalla(qty);
+            console.log("ELSE MUL");
+        }
+        if(res || sum){
+            qty = (qty / 100) * acm;
+            vle = qty;
+            Pantalla(qty);
+            console.log("ELSE SUM");
+        }
+        console.log("ELSE IF");
+    }
+    else{
+        if(stp === true){
+            ptv = acm /100;
+            acm = ptv * acm;
+            Pantalla(acm);
+            stp = false;
+            console.log("IF");
+        }
+        else{
+            acm = ptv * acm;
+            Pantalla(acm);
+            console.log("ELSE");
+        }
+    }
+}
+
 const Limpiar = () =>{
     qty = "";
     Pantalla(0);
@@ -41,19 +81,22 @@ const Limpiar = () =>{
 const Reiniciar = () =>{
     div = false;
     mul = false;
-    sum = false;
     res = false;
+    sum = false;
 
+    stp = false;
     sta = false;
     ste = false;
     sts = false;
     std = false;
     stm = false;
     str = false;
+    sti = false;
 
     qty = "";
     vle = "";
     acm = 0;
+    ptv = 0;
     Pantalla(0);
 }
 
@@ -69,6 +112,7 @@ const Borrar = () =>{
     }
     else{
         qty = digs.join("");
+        vle = qty;
         Pantalla(qty);
     }
 }
@@ -215,8 +259,14 @@ const Sumar = () =>{
 
 const Invertir = () =>{
     if(qty === ""){
-        acm = -acm;
-        Pantalla(acm);
+        if(acm === 0){
+            acm = acm;
+            Pantalla(acm);
+        }
+        else{
+            acm = -acm;
+            Pantalla(acm);
+        }
     }
     else{
         qty = -qty;
@@ -245,39 +295,43 @@ const igual = () =>{
         acm += parseFloat(vle);
         Pantalla(acm);
         qty = "";
-        sum = false;
     }
     if(res){
         acm -= parseFloat(vle);
         Pantalla(acm);
         qty = "";
-        res = false;
     }
     if(mul){
         acm *= parseFloat(vle);
         Pantalla(acm);
         qty = "";
-        mul = false;
     }
     if(div){
         acm /= parseFloat(vle);
         Pantalla(acm);
         qty = "";
-        div = false;
     }
     sta = true;
     ste = true;
     sts = true;
     sti = true;
+    stp = true;
 }
 
 for(let btn of btns){
     btn.addEventListener("click", ()=>{
         if(btn.classList.contains("num")){
             if(sti){
+                div = false;
+                mul = false;
+                res = false;
+                sum = false;
                 acm = 0;
             }
             Pantalla(Cantidad(btn.value));
+        }
+        if(btn.classList.contains("porcentaje")){
+            Porcentaje();
         }
         if(btn.classList.contains("limpiar")){
             Limpiar();
